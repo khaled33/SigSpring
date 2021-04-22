@@ -30,7 +30,7 @@ public class PropietaireServiceImp implements PropietaireServiceI {
 
     @Override
     public Page<Proprietaires> getPageProprietaires(Pageable page) {
-        return proprietairesRepository.findAll(page);
+        return proprietairesRepository.findAllByOrderById(page);
     }
 
     @Override

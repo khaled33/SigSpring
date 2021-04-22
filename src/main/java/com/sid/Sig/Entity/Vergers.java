@@ -3,6 +3,8 @@ package com.sid.Sig.Entity;
 
 import com.bedatadriven.jackson.datatype.jts.serialization.GeometryDeserializer;
 import com.bedatadriven.jackson.datatype.jts.serialization.GeometrySerializer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  import lombok.AllArgsConstructor;
@@ -22,6 +24,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Entity
 @Table(name = "Vergers")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 
 public class Vergers implements Serializable {
 
@@ -38,8 +41,8 @@ public class Vergers implements Serializable {
     private Double rendements;
     //     @Column(name = "Point",columnDefinition="Geometry")
      @Column(columnDefinition = "geometry(Point,4326)")
-    @JsonSerialize(using = GeometrySerializer.class)
-    @JsonDeserialize(contentUsing = GeometryDeserializer.class)
+//    @JsonSerialize(using = GeometrySerializer.class)
+//    @JsonDeserialize(contentUsing = GeometryDeserializer.class)
     @Type(type = "jts_geometry")
 //    @Column(columnDefinition = "Geometry", nullable = true)
     private Geometry geom;
@@ -48,6 +51,8 @@ public class Vergers implements Serializable {
      @ManyToOne(targetEntity =Proprietaires.class,fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
     private Proprietaires Proprietaires;
 
-
-
+    @JsonIgnore
+    public void setGeom(Geometry geom) {
+        this.geom = geom;
+    }
 }

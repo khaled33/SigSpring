@@ -27,26 +27,27 @@ public class VergersServiceIImpl implements VergersServiceI {
 
     @Override
     public List<Vergers> getAllVergers() {
-        return null;
+        return VergersRepository.findAll();
     }
 
     @Override
     public Page<Vergers> getPageVergers(Pageable page) {
-        return null;
+        return VergersRepository.findAllByOrderById(page);
     }
 
     @Override
     public Vergers getByIdVergers(Long id) {
-        return null;
+        return VergersRepository.getOne(id);
     }
 
     @Override
     public Vergers updateVergers(Vergers Vergers, Long id) {
-        return null;
+        Vergers.setId(id);
+        return VergersRepository.save(Vergers);
     }
 
     @Override
     public void deleteVergers(Long id) {
-
+        VergersRepository.deleteById(id);
     }
 }
