@@ -20,7 +20,7 @@ public class VergersServiceIImpl implements VergersServiceI {
         vergers.setGeom(null);
 
         Long id= VergersRepository.save(vergers).getId();
-        System.out.println(vergers.getGeomString());
+
         VergersRepository.insertGeom(id,vergers.getGeomString());
         return vergers;
     }
@@ -41,10 +41,16 @@ public class VergersServiceIImpl implements VergersServiceI {
     }
 
     @Override
+    @Transactional
     public Vergers updateVergers(Vergers Vergers, Long id) {
         Vergers.setId(id);
-        return VergersRepository.save(Vergers);
-    }
+        Vergers.setGeom(null);
+
+         VergersRepository.save(Vergers);
+
+        VergersRepository.insertGeom(id,Vergers.getGeomString());
+        return Vergers;
+     }
 
     @Override
     public void deleteVergers(Long id) {
