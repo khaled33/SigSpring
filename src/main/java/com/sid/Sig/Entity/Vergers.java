@@ -17,6 +17,8 @@ import org.locationtech.jts.geom.Geometry;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -34,7 +36,7 @@ public class Vergers implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
-
+    private LocalDate annee;
     private Double superficies;
     private Double densites;
     private Integer ageMoyen;

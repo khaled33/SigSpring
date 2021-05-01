@@ -1,20 +1,14 @@
 package com.sid.Sig.Api;
 
-import com.sid.Sig.Dao.VergersRepository;
 import com.sid.Sig.Entity.Vergers;
-import com.sid.Sig.Entity.Vergers;
-import com.sid.Sig.Services.PropietaireServiceI;
 import com.sid.Sig.Services.VergersServiceIImpl;
-import com.vividsolutions.jts.geom.*;
 import com.vividsolutions.jts.io.ParseException;
-import com.vividsolutions.jts.io.WKTReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
 import java.util.List;
 @Transactional
 

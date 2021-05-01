@@ -1,9 +1,8 @@
 package com.sid.Sig;
 
 import com.bedatadriven.jackson.datatype.jts.JtsModule;
-import com.sid.Sig.Dao.VergersRepository;
+import com.sid.Sig.Repository.VergersRepository;
 
-import com.sid.Sig.Entity.Vergers;
 import com.vividsolutions.jts.geom.*;
 import com.vividsolutions.jts.io.WKTReader;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Transactional
 
-@SpringBootApplication(scanBasePackages={"com.sid.Sig.Dao","com.sid.Sig.Entity","com.sid.Sig.Api","com.sid.Sig.Services"})
+@SpringBootApplication(scanBasePackages={"com.sid.Sig.Repository","com.sid.Sig.Entity","com.sid.Sig.Api","com.sid.Sig.Services"})
  public class SigApplication implements CommandLineRunner {
 @Autowired
 VergersRepository vergersRepository;

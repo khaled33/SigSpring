@@ -1,6 +1,6 @@
 package com.sid.Sig.Services;
 
-import com.sid.Sig.Dao.ProprietairesRepository;
+import com.sid.Sig.Repository.ProprietairesRepository;
 import com.sid.Sig.Entity.Proprietaires;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

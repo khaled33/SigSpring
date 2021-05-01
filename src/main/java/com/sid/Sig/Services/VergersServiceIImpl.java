@@ -1,6 +1,6 @@
 package com.sid.Sig.Services;
 
-import com.sid.Sig.Dao.VergersRepository;
+import com.sid.Sig.Repository.VergersRepository;
 import com.sid.Sig.Entity.Vergers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
