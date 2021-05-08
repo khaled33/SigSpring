@@ -25,7 +25,7 @@ public class ProductionsAnnuel implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
-    private LocalDate AnneeProduction;
+        private String AnneeProduction;
     private BigDecimal ProductionValue ;
 
 }

@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public interface ProductionAnnuelRepository extends JpaRepository<ProductionsAnnuel, Long> {
 
-    @Query(value = "SELECT * FROM productions_annuel  ORDER BY annee_production DEC ",nativeQuery = true)
+    @Query(value = "SELECT * FROM productions_annuel  ORDER BY annee_production desc",nativeQuery = true)
     List<ProductionsAnnuel> findAll();
 
 }
