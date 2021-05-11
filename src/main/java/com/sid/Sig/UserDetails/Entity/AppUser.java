@@ -19,7 +19,7 @@ public class AppUser implements Serializable {
     private Long id;
     private String firstname;
     private String lastname;
-    @Column(unique = true)
+//    @Column(unique = true)
 //    @Email(regexp=".@.\\..*", message = "Email should be valid")
     private String email;
     private String phone;

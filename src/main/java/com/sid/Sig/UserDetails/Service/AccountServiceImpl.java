@@ -5,6 +5,8 @@ import com.sid.Sig.UserDetails.Dao.AppUsersRepository;
 import com.sid.Sig.UserDetails.Dao.RolesRepository;
 import com.sid.Sig.UserDetails.Entity.AppUser;
 import com.sid.Sig.UserDetails.Entity.Role;
+import com.sid.Sig.config.error.ConflictException;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,8 @@ public class AccountServiceImpl implements AccountService {
         users.setEnable(true);
         users.setPassword(hashPw);
         users.setCreated(new Date());
+        if(appUsersRepository.findByEmail(users.getEmail())!=null)
+           throw new ConflictException("Email  déjà  utilisé");
          return appUsersRepository.save(users);
     }
 
