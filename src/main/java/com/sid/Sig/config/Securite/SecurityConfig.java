@@ -1,6 +1,6 @@
 package com.sid.Sig.config.Securite;
 
-import com.sid.Sig.UserDetails.Service.ImpUserDetailsService;
+import com.sid.Sig.Services.ImpUserDetailsService;
 import com.sid.Sig.config.error.JWTAccessDeniedHandler;
 import com.sid.Sig.config.error.JWTAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;

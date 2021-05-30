@@ -10,7 +10,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface ProprietairesRepository extends JpaRepository<Proprietaires,Long> {
+
+    Proprietaires getByCin(int cin);
+
     Page<Proprietaires> findAllByOrderById(Pageable page);
+
     @Query(value="SELECT COUNT(DISTINCT nom) FROM proprietaires", nativeQuery = true)
     Long getCountProprietaires();
 

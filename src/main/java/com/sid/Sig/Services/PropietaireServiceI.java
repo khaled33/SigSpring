@@ -12,8 +12,9 @@ public interface PropietaireServiceI {
     Proprietaires addProprietaires(Proprietaires proprietaires);
     List<Proprietaires> getAllProprietaires();
     Page<Proprietaires> getPageProprietaires(Pageable page);
+    Proprietaires getByProprietaireCin(int cin);
     Proprietaires getByIdProprietaires(Long id);
     Proprietaires updateProprietaires(Proprietaires proprietaires,Long id);
-    void deleteProprietaires(Long id);
+    Void deleteProprietaires(Long id);
 
 }

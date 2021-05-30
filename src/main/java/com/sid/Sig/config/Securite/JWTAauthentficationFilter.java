@@ -1,7 +1,7 @@
 package com.sid.Sig.config.Securite;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sid.Sig.UserDetails.Entity.AppUser;
+import com.sid.Sig.Entity.AppUser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;

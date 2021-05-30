@@ -14,6 +14,6 @@ public interface ProductionsAnnuelServiceI {
     Page<ProductionsAnnuel> getPageProductionsAnnuel(Pageable page);
     ProductionsAnnuel getByIdProductionsAnnuel(Long id);
     ProductionsAnnuel updateProductionsAnnuel(ProductionsAnnuel ProductionsAnnuel, Long id);
-    void deleteProductionsAnnuel(Long id);
+    Void deleteProductionsAnnuel(Long id);
 
 }

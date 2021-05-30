@@ -5,20 +5,19 @@ import com.sid.Sig.Repository.ProprietairesRepository;
 import com.sid.Sig.Repository.VergersRepository;
 import com.sid.Sig.Dto.BarCharts;
 import com.sid.Sig.Dto.PieChar;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+@AllArgsConstructor
 
 @Service
 public class  DashboardChartService {
-    @Autowired
-    private VergersRepository vergersRepository;
-    @Autowired
-    private ProprietairesRepository proprietairesRepository;
- @Autowired
-    private ProductionAnnuelRepository productionAnnuelRepository;
+     private final VergersRepository vergersRepository;
+     private final ProprietairesRepository proprietairesRepository;
+     private final ProductionAnnuelRepository productionAnnuelRepository;
 
     public List<PieChar> getDataPieCharSexe(){
         List<PieChar> pieChars=  new ArrayList<>();

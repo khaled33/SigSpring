@@ -5,24 +5,28 @@ import com.sid.Sig.Dto.DtoDashboardHead;
 import com.sid.Sig.Dto.PieChar;
 import com.sid.Sig.Services.DashboardChartService;
 import com.sid.Sig.Services.DtoDashboardHeadService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+@AllArgsConstructor
 
 @RestController
 public class DashboardChartController {
-    @Autowired
-    private DashboardChartService dashboardChartService;
+     private final DashboardChartService dashboardChartService;
 
     @GetMapping("/PieCharSexe")
-    public List<PieChar> getDashboardHeadStatistic() {
-        return dashboardChartService.getDataPieCharSexe();
+    public ResponseEntity<List<PieChar>>  getDashboardHeadStatistic() {
+        return new ResponseEntity<>(dashboardChartService.getDataPieCharSexe(), HttpStatus.OK);
     }
+
     @GetMapping("/BarChartProductionAnnuel")
 
-    public List<BarCharts> getDataBarCharts() {
-        return dashboardChartService.getDataBarCharts();
+    public ResponseEntity<List<BarCharts>> getDataBarCharts() {
+        return new ResponseEntity<>( dashboardChartService.getDataBarCharts(), HttpStatus.OK);
     }
 }

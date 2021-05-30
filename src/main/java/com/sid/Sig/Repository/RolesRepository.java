@@ -1,7 +1,7 @@
-package com.sid.Sig.UserDetails.Dao;
+package com.sid.Sig.Repository;
 
 
-import com.sid.Sig.UserDetails.Entity.Role;
+import com.sid.Sig.Entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RolesRepository extends JpaRepository<Role, Long> {

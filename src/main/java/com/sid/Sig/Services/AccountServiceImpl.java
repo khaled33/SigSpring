@@ -1,13 +1,14 @@
-package com.sid.Sig.UserDetails.Service;
+package com.sid.Sig.Services;
 
 
-import com.sid.Sig.UserDetails.Dao.AppUsersRepository;
-import com.sid.Sig.UserDetails.Dao.RolesRepository;
-import com.sid.Sig.UserDetails.Entity.AppUser;
-import com.sid.Sig.UserDetails.Entity.Role;
+import com.sid.Sig.Repository.AppUsersRepository;
+import com.sid.Sig.Repository.RolesRepository;
+import com.sid.Sig.Entity.AppUser;
+import com.sid.Sig.Entity.Role;
 import com.sid.Sig.config.error.ConflictException;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ import java.util.List;
 
 @Service
 
-public class AccountServiceImpl implements AccountService {
+public class AccountServiceImpl  implements AccountService {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -38,9 +39,9 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AppUser UpdateUser(AppUser users, Long idUser) {
-        AppUser appUser=appUsersRepository.getOne(idUser);
-        users.setId(idUser);
+    public AppUser UpdateUser(AppUser users) {
+        AppUser appUser=getCorrentUserauthentication();
+        users.setId(appUser.getId());
         users.setRoles(appUser.getRoles());
         users.setPassword(appUser.getPassword());
         users.setModified(new Date());
@@ -77,10 +78,18 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public AppUser getCorrentUser() {
+        return getCorrentUserauthentication() ;
+    }
+
+    @Override
     public List<AppUser> getAllUser() {
         return appUsersRepository.findAll();
     }
 
-
+    private AppUser getCorrentUserauthentication(){
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+return appUsersRepository.findByEmail(authentication.getName());
+    }
 
 }

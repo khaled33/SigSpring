@@ -14,6 +14,6 @@ public interface VergersServiceI {
     Page<Vergers> getPageVergers(Pageable page);
     Vergers getByIdVergers(Long id);
     Vergers updateVergers(Vergers Vergers, Long id);
-    void deleteVergers(Long id);
+    Void deleteVergers(Long id);
 
 }

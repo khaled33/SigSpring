@@ -3,17 +3,17 @@ package com.sid.Sig.Services;
 import com.sid.Sig.Repository.ProprietairesRepository;
 import com.sid.Sig.Repository.VergersRepository;
 import com.sid.Sig.Dto.DtoDashboardHead;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+@AllArgsConstructor
 
 @Service
 public class DtoDashboardHeadService {
-    @Autowired
-    private VergersRepository vergersRepository;
-    @Autowired
-    private ProprietairesRepository proprietairesRepository;
+     private final VergersRepository vergersRepository;
+     private final ProprietairesRepository proprietairesRepository;
 
     public DtoDashboardHead getDashboardHeadStatistic(){
         DtoDashboardHead dashboardHead = new DtoDashboardHead();

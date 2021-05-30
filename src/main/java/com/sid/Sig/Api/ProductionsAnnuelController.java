@@ -3,47 +3,51 @@ package com.sid.Sig.Api;
 import com.sid.Sig.Entity.ProductionsAnnuel;
 import com.sid.Sig.Services.ProductionsAnnuelServiceI;
 import com.sid.Sig.Services.PropietaireServiceI;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.Instant;
 import java.util.List;
+@AllArgsConstructor
 
 @RestController
 public class ProductionsAnnuelController {
 
-    @Autowired
-    private ProductionsAnnuelServiceI productionsAnnuelServiceI;
+     private final ProductionsAnnuelServiceI productionsAnnuelServiceI;
 
     @GetMapping("/ProductionsAnnuelPage")
-    public Page<ProductionsAnnuel> getPageProductionsAnnuel(Pageable page) {
-        return productionsAnnuelServiceI.getPageProductionsAnnuel(page);
+    public ResponseEntity<Page<ProductionsAnnuel>> getPageProductionsAnnuel(Pageable page) {
+        return new ResponseEntity<>(productionsAnnuelServiceI.getPageProductionsAnnuel(page), HttpStatus.OK);
     }
 
     @PostMapping("/ProductionsAnnuel")
-    public ProductionsAnnuel addProductionsAnnuel(@RequestBody ProductionsAnnuel proprietaires) {
-         return productionsAnnuelServiceI.addProductionsAnnuel(proprietaires);
+    public ResponseEntity<ProductionsAnnuel> addProductionsAnnuel(@Valid @RequestBody ProductionsAnnuel proprietaires) {
+         return  new ResponseEntity<>(productionsAnnuelServiceI.addProductionsAnnuel(proprietaires),HttpStatus.CREATED);
     }
 
     @GetMapping("/ProductionsAnnuel")
-    public List<ProductionsAnnuel> getAllProductionsAnnuel() {
-        return productionsAnnuelServiceI.getAllProductionsAnnuel();
+    public ResponseEntity<List<ProductionsAnnuel>> getAllProductionsAnnuel() {
+        return  new ResponseEntity<>(productionsAnnuelServiceI.getAllProductionsAnnuel(),HttpStatus.OK);
     }
 
     @GetMapping("/ProductionsAnnuel/{id}")
-    public ProductionsAnnuel getByIdProductionsAnnuel(@PathVariable Long id) {
-        return productionsAnnuelServiceI.getByIdProductionsAnnuel(id);
+    public ResponseEntity<ProductionsAnnuel> getByIdProductionsAnnuel(@PathVariable Long id) {
+        return    new ResponseEntity<>(productionsAnnuelServiceI.getByIdProductionsAnnuel(id),HttpStatus.OK);
     }
 
     @PutMapping("/ProductionsAnnuel/{id}")
-    public ProductionsAnnuel updateProductionsAnnuel(@RequestBody ProductionsAnnuel proprietaires, @PathVariable Long id) {
-        return productionsAnnuelServiceI.updateProductionsAnnuel(proprietaires, id);
+    public ResponseEntity<ProductionsAnnuel> updateProductionsAnnuel(@Valid @RequestBody ProductionsAnnuel proprietaires, @PathVariable Long id) {
+        return new ResponseEntity<>(productionsAnnuelServiceI.updateProductionsAnnuel(proprietaires, id),HttpStatus.CREATED);
     }
 
     @DeleteMapping("/ProductionsAnnuel/{id}")
-    public void deleteProductionsAnnuel(@PathVariable Long id) {
-        productionsAnnuelServiceI.deleteProductionsAnnuel(id);
+    public ResponseEntity<Void> deleteProductionsAnnuel(@PathVariable Long id) {
+        return new ResponseEntity<>( productionsAnnuelServiceI.deleteProductionsAnnuel(id),HttpStatus.NO_CONTENT);
     }
 }

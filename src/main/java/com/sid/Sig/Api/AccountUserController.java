@@ -1,22 +1,20 @@
-package com.sid.Sig.UserDetails.Controller;
+package com.sid.Sig.Api;
 
 
-import com.sid.Sig.UserDetails.Entity.AppUser;
-import com.sid.Sig.UserDetails.Service.AccountService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
+import com.sid.Sig.Entity.AppUser;
+import com.sid.Sig.Services.AccountService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 import java.util.List;
+@AllArgsConstructor
 
 @RestController
 public class AccountUserController {
-    @Autowired
-    private AccountService accountService;
+     private final AccountService accountService;
     @PostMapping("/Register")
     public ResponseEntity<AppUser> Register(@Valid @RequestBody AppUser appUser) {
 
@@ -26,10 +24,10 @@ public class AccountUserController {
 
 
     }
- @PutMapping("/UpdateUser/{idUser}")
-    public ResponseEntity<AppUser> UpdateUser(@RequestBody AppUser appUser, @PathVariable Long idUser) {
+ @PutMapping("/UpdateUser")
+    public ResponseEntity<AppUser> UpdateUser(@RequestBody AppUser appUser) {
 
-                  return new ResponseEntity<>(accountService.UpdateUser(appUser,idUser), HttpStatus.CREATED);
+                  return new ResponseEntity<>(accountService.UpdateUser(appUser), HttpStatus.CREATED);
 
     }
 
@@ -37,6 +35,13 @@ public class AccountUserController {
     public ResponseEntity<AppUser> Login(@PathVariable String email) {
 
         return new ResponseEntity<>(accountService.findUserByEmail(email), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/User")
+    public ResponseEntity<AppUser> getCorrentUser() {
+
+        return new ResponseEntity<>(accountService.getCorrentUser(), HttpStatus.OK);
 
     }
     @PutMapping("/UpdatePassword/{idUser}")

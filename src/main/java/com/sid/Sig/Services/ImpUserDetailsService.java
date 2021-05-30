@@ -1,7 +1,7 @@
-package com.sid.Sig.UserDetails.Service;
+package com.sid.Sig.Services;
 
 
-import com.sid.Sig.UserDetails.Entity.AppUser;
+import com.sid.Sig.Entity.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
